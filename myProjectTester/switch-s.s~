@@ -1,0 +1,47 @@
+	INCLUDE "stateMachine.h"
+	INCLUDE "lcdutils.h"
+	INCLUDE "lcddraw.h"
+	.text
+	.align 2
+
+	EXTERN forloop
+	
+jt:
+	.word c0
+	.word c1
+	.word c2
+	.word c3
+	.data
+	.align 2
+state:
+	.word 0
+	.text
+	
+advanceState2:
+	mov &b, r12
+	mov jt(r12), r0
+
+c0:
+	mov #0, r12
+	mov #-1, r13
+	call #forloop
+	add #1, &b
+	pop r0
+c1:
+	mov #-1 r12
+	mov #-1, r13
+	call #forloop
+	add #1, &b
+	pop r0
+c2:
+	mov #0, r12
+	mov #-1, r13
+	call #forloop
+	add #1, &b
+	pop r0
+c3:
+	mov #1, r12
+	mov #-1, r13
+	call #forloop
+	add #1, &b
+	pop r0
